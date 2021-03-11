@@ -10,7 +10,7 @@ function ConvertHandler() {
   
   this.getNum = function(input) {
     let result;
-    
+    result = parseFloat(input)
     return result;
   };
   
