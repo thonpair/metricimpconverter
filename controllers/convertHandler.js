@@ -8,21 +8,52 @@
 
 function ConvertHandler() {
   
+  let units = ['gal','l','mi','km','lbs','kg','GAL','L','MI','KM','LBS','KG'];
+  
+  splitNumUnit = function (input){
+    let result = [];
+    units.map(unit => {
+      if (result.length === 0){
+        const indexInput = input.indexOf(unit);
+        if (indexInput > -1){
+          // check if a number was provided, or only unit
+          if (indexInput !== 0) {
+            //push number
+            result.push(input.substring(0,indexInput))
+          } else {
+            // push 1 if not number provided
+            result.push('1')
+          }
+          //push unit
+          result.push(input.substring(indexInput))
+        }
+      }
+    })
+    return result;
+  };
+
   this.getNum = function(input) {
-    const regex = /\d*\.?\d*/g;
-    return input.match(regex)[0];
+    const inputNum = (splitNumUnit(input)[0])
+    const regex = /^\d+\.?\d*\/?\d*$/;
+    return inputNum.match(regex) === null
+            ? ""
+            : inputNum.match(regex)[0];
   };
   
   this.getUnit = function(input) {
-    let result;
-    
-    return result;
+    const indexUnit = units.indexOf(input)
+    return indexUnit === -1
+    ? ''
+    : units[indexUnit]
   };
   
   this.getReturnUnit = function(initUnit) {
-    let result;
-    
-    return result;
+    const indexUnit = units.indexOf(input.toLowerCase())
+    if (indexUnit === -1) return ''
+    const returnIndex = indexUnit % 2 === 0
+                        ? indexUnit + 1
+                        : indexUnit -1
+    units[returnIndex]
   };
 
   this.spellOutUnit = function(unit) {

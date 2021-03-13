@@ -29,23 +29,27 @@ suite('Unit Tests', function(){
     });
     
     test('Fractional Input', function(done) {
-      
-      //done();
+      let input = "3.50/3L";
+      assert.equal(convertHandler.getNum(input), "3.50/3")
+      done();
     });
     
     test('Fractional Input w/ Decimal', function(done) {
-      
-      //done();
+      let input = "2/3L"
+      assert.equal(convertHandler.getNum(input), "2/3")
+      done();
     });
     
     test('Invalid Input (double fraction)', function(done) {
-      
-      //done();
+      let input = "6/7/8L"
+      assert.equal(convertHandler.getNum(input), "")
+      done();
     });
     
     test('No Numerical Input', function(done) {
-      
-      //done();
+      let input = "L"
+      assert.equal(convertHandler.getNum(input), "1")
+      done();
     }); 
     
   });
@@ -55,7 +59,7 @@ suite('Unit Tests', function(){
     test('For Each Valid Unit Inputs', function(done) {
       let input = ['gal','l','mi','km','lbs','kg','GAL','L','MI','KM','LBS','KG'];
       input.forEach(function(ele) {
-        //assert
+        assert.equal(convertHandler.getUnit(ele), ele)
       });
       done();
     });
