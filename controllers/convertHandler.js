@@ -91,6 +91,32 @@ function ConvertHandler() {
     const lbsToKg = 0.453592;
     const miToKm = 1.60934;
     let result;
+    const num = this.getNum(initNum)
+    const unit = this.getUnit(initUnit)
+    let returnNum = 0
+    switch(unit.toLowerCase()){
+      case 'gal':
+        returnNum = num * galToL
+        break;
+      case 'l':
+        returnNum = num / galToL;
+        break;
+      case 'mi':
+        returnNum = num * miToKm;
+        break;
+      case 'km':
+        returnNum = num / miToKm;
+        break;
+      case 'lbs':
+        returnNum = num * lbsToKg;
+        break;
+      case 'kg':
+        returnNum = num / lbsToKg;
+        break;
+      default:
+        result = undefined 
+    }
+    
     
     return result;
   };
