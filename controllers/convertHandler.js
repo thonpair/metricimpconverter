@@ -60,8 +60,29 @@ function ConvertHandler() {
 
   this.spellOutUnit = function(unit) {
     let result;
-
-    
+    if (!unit) return undefined
+    switch(unit.toLowerCase()){
+      case 'gal':
+        result = 'gallons'
+        break;
+      case 'l':
+        result = 'liters';
+        break;
+      case 'mi':
+        result = 'miles';
+        break;
+      case 'km':
+        result = 'kilometers';
+        break;
+      case 'lbs':
+        result = 'pounds';
+        break;
+      case 'kg':
+        result = 'kilograms';
+        break;
+      default:
+        result = undefined 
+    }
     return result;
   };
   
