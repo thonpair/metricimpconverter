@@ -42,7 +42,7 @@ suite('Unit Tests', function(){
     
     test('Invalid Input (double fraction)', function(done) {
       let input = "6/7/8L"
-      assert.equal(convertHandler.getNum(input), "")
+      assert.equal(convertHandler.getNum(input), undefined)
       done();
     });
     
@@ -65,7 +65,7 @@ suite('Unit Tests', function(){
     });
     
     test('Unknown Unit Input', function(done) {
-      assert.equal(convertHandler.getUnit('ele'), '')
+      assert.equal(convertHandler.getUnit('ele'), undefined)
       done();
     });  
     

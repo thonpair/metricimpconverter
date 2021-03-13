@@ -36,14 +36,14 @@ function ConvertHandler() {
     const inputNum = (splitNumUnit(input)[0])
     const regex = /^\d+\.?\d*\/?\d*$/;
     return inputNum.match(regex) === null
-            ? ""
+            ? undefined
             : inputNum.match(regex)[0];
   };
   
   this.getUnit = function(input) {
     const indexUnit = units.indexOf(input)
     return indexUnit === -1
-    ? ''
+    ? undefined
     : units[indexUnit]
   };
   
@@ -60,6 +60,7 @@ function ConvertHandler() {
 
   this.spellOutUnit = function(unit) {
     let result;
+
     
     return result;
   };
