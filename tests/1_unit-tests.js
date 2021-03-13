@@ -65,8 +65,8 @@ suite('Unit Tests', function(){
     });
     
     test('Unknown Unit Input', function(done) {
-      
-      //done();
+      assert.equal(convertHandler.getUnit('ele'), '')
+      done();
     });  
     
   });

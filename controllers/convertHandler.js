@@ -48,12 +48,14 @@ function ConvertHandler() {
   };
   
   this.getReturnUnit = function(initUnit) {
-    const indexUnit = units.indexOf(input.toLowerCase())
-    if (indexUnit === -1) return ''
+    const indexUnit = units.indexOf(initUnit.toLowerCase())
+    if (indexUnit === -1) return '';
     const returnIndex = indexUnit % 2 === 0
                         ? indexUnit + 1
-                        : indexUnit -1
-    units[returnIndex]
+                        : indexUnit -1;
+    return units[returnIndex] === 'l'
+            ? 'L'
+            : units[returnIndex]
   };
 
   this.spellOutUnit = function(unit) {
