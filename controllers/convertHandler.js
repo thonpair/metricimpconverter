@@ -14,7 +14,7 @@ function ConvertHandler() {
     let result = [];
     units.map(unit => {
       if (result.length === 0){
-        const indexInput = input.indexOf(unit);
+        const indexInput = input.toString().indexOf(unit);
         if (indexInput > -1){
           // check if a number was provided, or only unit
           if (indexInput !== 0) {
@@ -90,34 +90,31 @@ function ConvertHandler() {
     const galToL = 3.78541;
     const lbsToKg = 0.453592;
     const miToKm = 1.60934;
-    let result;
-    const num = this.getNum(initNum)
+    const num = initNum
     const unit = this.getUnit(initUnit)
-    let returnNum = 0
+    let result;
     switch(unit.toLowerCase()){
       case 'gal':
-        returnNum = num * galToL
+        result = initNum * galToL
         break;
       case 'l':
-        returnNum = num / galToL;
+        result = initNum / galToL;
         break;
       case 'mi':
-        returnNum = num * miToKm;
+        result = initNum * miToKm;
         break;
       case 'km':
-        returnNum = num / miToKm;
+        result = initNum / miToKm;
         break;
       case 'lbs':
-        returnNum = num * lbsToKg;
+        result = initNum * lbsToKg;
         break;
       case 'kg':
-        returnNum = num / lbsToKg;
+        result = initNum / lbsToKg;
         break;
       default:
-        result = undefined 
+        return undefined
     }
-    
-    
     return result;
   };
   

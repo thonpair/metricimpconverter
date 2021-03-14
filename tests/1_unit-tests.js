@@ -96,7 +96,8 @@ suite('Unit Tests', function(){
     });
     
   });
-  
+  console.log('yyyy : '+convertHandler.convert(5,'gal'))
+ 
   suite('Function convertHandler.convert(num, unit)', function() {
     
     test('Gal to L', function(done) {
@@ -107,8 +108,10 @@ suite('Unit Tests', function(){
     });
     
     test('L to Gal', function(done) {
-      
-      //done();
+      let input = [5, 'L'];
+      let expected = 1.32086;
+      assert.approximately(convertHandler.convert(input[0],input[1]),expected,0.1); //0.1 tolerance
+      done();;
     });
     
     test('Mi to Km', function(done) {
