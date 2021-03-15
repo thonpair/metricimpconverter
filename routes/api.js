@@ -24,7 +24,13 @@ module.exports = function (app) {
       let returnUnit = convertHandler.getReturnUnit(initUnit);
       let toString = convertHandler.getString(initNum, initUnit, returnNum, returnUnit);
       //example :  {"initNum":5,"initUnit":"kg","returnNum":11.02312,"returnUnit":"lbs","string":"5 kilograms converts to 11.02312 pounds"} 
-//      res.json({"initNum":0,"initUnit":"","returnNum":0,"returnUnit":"","string":""})
+      return res.status(200).json({
+        "initNum":initNum,
+        "initUnit":initUnit,
+        "returnNum":returnNum,
+        "returnUnit":returnUnit,
+        "string": toString
+      })
     });
     
 };

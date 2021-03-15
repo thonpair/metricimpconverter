@@ -57,11 +57,17 @@ suite('Unit Tests', function(){
   });
   
   suite('Function convertHandler.getUnit(input)', function() {
-    
+    test('number and unit input', function(done) {
+      let input = "10L"
+      console.log(convertHandler.getUnit(input))
+      assert.equal(convertHandler.getUnit(input), 'l')
+      done();
+    }); 
     test('For Each Valid Unit Inputs', function(done) {
       let input = ['gal','l','mi','km','lbs','kg','GAL','L','MI','KM','LBS','KG'];
-      input.forEach(function(ele) {
-        assert.equal(convertHandler.getUnit(ele), ele)
+      let expect = ['gal','l','mi','km','lbs','kg','GAL','l','MI','KM','LBS','KG'];
+      input.forEach(function(ele, i) {
+        assert.equal(convertHandler.getUnit(ele),  expect[i])
       });
       done();
     });

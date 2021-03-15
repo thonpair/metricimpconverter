@@ -27,15 +27,26 @@ function ConvertHandler() {
   };
   
   this.getUnit = function(input) {
-    const indexUnit = units.indexOf(input)
-    return indexUnit === -1
+    let unitIndex = -1;
+    units.map(unit => {
+      if (unitIndex === - 1){
+        unitIndex = input.toString().indexOf(unit)
+      }
+    })
+    const inputUnit = unitIndex > -1
+                      ? input.substring(unitIndex)
+                      : input
+    const unitsIndex = units.indexOf(inputUnit)
+    return unitsIndex === -1
     ? undefined
-    : units[indexUnit]
+    : units[unitsIndex] === 'L'
+      ? 'l'
+      : units[unitsIndex]
   };
   
   this.getReturnUnit = function(initUnit) {
     const indexUnit = units.indexOf(initUnit.toLowerCase())
-    if (indexUnit === -1) return '';
+    if (indexUnit === -1) return undefined;
     const returnIndex = indexUnit % 2 === 0
                         ? indexUnit + 1
                         : indexUnit -1;

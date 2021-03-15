@@ -24,6 +24,7 @@ suite('Functional Tests', function() {
         .get('/api/convert')
         .query({input: '10L'})
         .end(function(err, res){
+          console.log(res.body)
           assert.equal(res.status, 200);
           assert.equal(res.body.initNum, 10);
           assert.equal(res.body.initUnit, 'l');
