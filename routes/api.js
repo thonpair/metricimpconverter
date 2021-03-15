@@ -18,16 +18,16 @@ module.exports = function (app) {
   app.route('/api/convert')
     .get(function (req, res){
       let input = req.query.input;
-      let initNum = convertHandler.getNum(input);
+      let initNum = convertHandler.getNum(input); 
       let initUnit = convertHandler.getUnit(input);
       if (initUnit  === undefined && initNum == undefined){
-        return res.status(401).send({message: 'invalid number and unit'})
+        return res.status(200).send('invalid number and unit')
       }
       if (initNum == undefined){
-        return res.status(401).send({message: 'invalid number'})
+        return res.status(200).send('invalid number')
       }
       if (initUnit  === undefined){
-        return res.status(401).send({message: 'invalid unit'})
+        return res.status(200).send('invalid unit')
       }
       let returnNum = convertHandler.convert(initNum, initUnit);
       let returnUnit = convertHandler.getReturnUnit(initUnit);
