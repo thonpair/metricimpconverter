@@ -50,7 +50,7 @@ suite('Unit Tests', function(){
     
     test('No Numerical Input', function(done) {
       let input = "L"
-      assert.equal(convertHandler.getNum(input), undefined)
+      assert.equal(convertHandler.getNum(input), 1)
       done();
     }); 
     

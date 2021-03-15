@@ -11,19 +11,16 @@ function ConvertHandler() {
   let units = ['gal','l','mi','km','lbs','kg','GAL','L','MI','KM','LBS','KG'];
 
   this.getNum = function(input) {
-    let unitIndex = -1;
-    units.map(unit => {
-      if (unitIndex === -1){
-        unitIndex = input.toString().indexOf(unit)
-      }
-    })
-    const inputNum = unitIndex > -1
-                      ? input.substring(0,unitIndex)
-                      : input
-    const regex = /^\d+\.?\d*\/?\d*$/;
-    return inputNum.match(regex) === null
-            ? undefined
-            : eval(inputNum);
+    // only letters
+    if (input.match(/^[a-zA-Z]+$/)) return 1
+    let inputNum = input
+    if (input.match(/[a-zA-Z]+/) !== null){
+      // letters found : extract numbers
+      inputNum = input.substring(0,input.match(/[a-zA-Z]+/).index)
+    } 
+    return inputNum.match(/^\d+\.?\d*\/?\d*$/) !== null // valid numbers
+        ? eval(inputNum)
+        : undefined
   };
   
   this.getUnit = function(input) {

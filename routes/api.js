@@ -20,6 +20,15 @@ module.exports = function (app) {
       let input = req.query.input;
       let initNum = convertHandler.getNum(input);
       let initUnit = convertHandler.getUnit(input);
+      if (initUnit  === undefined && initNum == undefined){
+        return res.status(401).send({message: 'invalid number and unit'})
+      }
+      if (initNum == undefined){
+        return res.status(401).send({message: 'invalid number'})
+      }
+      if (initUnit  === undefined){
+        return res.status(401).send({message: 'invalid unit'})
+      }
       let returnNum = convertHandler.convert(initNum, initUnit);
       let returnUnit = convertHandler.getReturnUnit(initUnit);
       let toString = convertHandler.getString(initNum, initUnit, returnNum, returnUnit);
