@@ -19,6 +19,8 @@ suite('Unit Tests', function(){
     test('Whole number input', function(done) {
       let input = '32L';
       assert.equal(convertHandler.getNum(input),32);
+      input = '32L';
+      assert.equal(convertHandler.getNum(input),32);
       done();
     });
     
@@ -29,14 +31,14 @@ suite('Unit Tests', function(){
     });
     
     test('Fractional Input', function(done) {
-      let input = "3.50/3L";
-      assert.equal(convertHandler.getNum(input), "3.50/3")
+      let input = "4.50/3L";
+      assert.equal(convertHandler.getNum(input), 1.5)
       done();
     });
     
     test('Fractional Input w/ Decimal', function(done) {
-      let input = "2/3L"
-      assert.equal(convertHandler.getNum(input), "2/3")
+      let input = "10/4L"
+      assert.equal(convertHandler.getNum(input), 2.5)
       done();
     });
     
@@ -48,7 +50,7 @@ suite('Unit Tests', function(){
     
     test('No Numerical Input', function(done) {
       let input = "L"
-      assert.equal(convertHandler.getNum(input), "1")
+      assert.equal(convertHandler.getNum(input), undefined)
       done();
     }); 
     

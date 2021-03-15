@@ -9,35 +9,21 @@
 function ConvertHandler() {
   
   let units = ['gal','l','mi','km','lbs','kg','GAL','L','MI','KM','LBS','KG'];
-  
-  splitNumUnit = function (input){
-    let result = [];
-    units.map(unit => {
-      if (result.length === 0){
-        const indexInput = input.toString().indexOf(unit);
-        if (indexInput > -1){
-          // check if a number was provided, or only unit
-          if (indexInput !== 0) {
-            //push number
-            result.push(input.substring(0,indexInput))
-          } else {
-            // push 1 if not number provided
-            result.push('1')
-          }
-          //push unit
-          result.push(input.substring(indexInput))
-        }
-      }
-    })
-    return result;
-  };
 
   this.getNum = function(input) {
-    const inputNum = (splitNumUnit(input)[0])
+    let unitIndex = -1;
+    units.map(unit => {
+      if (unitIndex === -1){
+        unitIndex = input.toString().indexOf(unit)
+      }
+    })
+    const inputNum = unitIndex > -1
+                      ? input.substring(0,unitIndex)
+                      : input
     const regex = /^\d+\.?\d*\/?\d*$/;
     return inputNum.match(regex) === null
             ? undefined
-            : inputNum.match(regex)[0];
+            : eval(inputNum);
   };
   
   this.getUnit = function(input) {
@@ -120,7 +106,10 @@ function ConvertHandler() {
   
   this.getString = function(initNum, initUnit, returnNum, returnUnit) {
     let result;
-    
+    const spellOutInitUnit = this.spellOutUnit(initUnit);
+    const spellOutReturnUnit = this.spellOutUnit(returnUnit)
+    // example 5 kilograms converts to 11.02312 pounds
+    result = `${initNum} ${spellOutInitUnit} converts to ${returnNum} ${spellOutReturnUnit}`
     return result;
   };
   
