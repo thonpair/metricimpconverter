@@ -12,15 +12,14 @@ function ConvertHandler() {
 
   this.getNum = function(input) {
     // only letters
-    if (input.match(/^[a-zA-Z]+$/)) return 1
-    let inputNum = input
-    if (input.match(/[a-zA-Z]+/) !== null){
+    if (input.toString().match(/^[a-zA-Z]+$/)) return 1
+    let inputNum = input.toString()
+    if (input.toString().match(/[a-zA-Z]+/) !== null){
       // letters found : extract numbers
-      inputNum = input.substring(0,input.match(/[a-zA-Z]+/).index)
+      inputNum = input.toString().substring(0,input.toString().match(/[a-zA-Z]+/).index)
     } 
-    return inputNum.match(/^\d+\.?\d*\/?\d*$/) !== null // valid numbers
-        ? eval(inputNum)
-        : undefined
+    if (inputNum.match(/^\d+\.?\d*\/?\d*\.?\d*$/) !== null) return eval(inputNum)
+    return undefined
   };
   
   this.getUnit = function(input) {
@@ -36,9 +35,9 @@ function ConvertHandler() {
     const unitsIndex = units.indexOf(inputUnit)
     return unitsIndex === -1
     ? undefined
-    : units[unitsIndex] === 'L'
-      ? 'l'
-      : units[unitsIndex]
+    : units[unitsIndex] === 'l' || units[unitsIndex] === 'L'
+      ? 'L'
+      : units[unitsIndex].toLowerCase()
   };
   
   this.getReturnUnit = function(initUnit) {
@@ -109,7 +108,7 @@ function ConvertHandler() {
       default:
         return undefined
     }
-    return result;
+    return Math.round(result*100000)/100000;
   };
   
   this.getString = function(initNum, initUnit, returnNum, returnUnit) {
