@@ -17,7 +17,7 @@ suite('Unit Tests', function(){
   suite('Function convertHandler.getNum(input)', function() {
     
     test('Whole number input', function(done) {
-      let input = '32L';
+      let input = '32';
       assert.equal(convertHandler.getNum(input),32);
       input = '32L';
       assert.equal(convertHandler.getNum(input),32);
@@ -58,14 +58,13 @@ suite('Unit Tests', function(){
   
   suite('Function convertHandler.getUnit(input)', function() {
     test('number and unit input', function(done) {
-      let input = "10L"
-      console.log(convertHandler.getUnit(input))
-      assert.equal(convertHandler.getUnit(input), 'l')
+      let input = "10l"
+      assert.equal(convertHandler.getUnit(input), 'L')
       done();
     }); 
     test('For Each Valid Unit Inputs', function(done) {
       let input = ['gal','l','mi','km','lbs','kg','GAL','L','MI','KM','LBS','KG'];
-      let expect = ['gal','l','mi','km','lbs','kg','GAL','l','MI','KM','LBS','KG'];
+      let expect = ['gal','L','mi','km','lbs','kg','gal','L','mi','km','lbs','kg'];
       input.forEach(function(ele, i) {
         assert.equal(convertHandler.getUnit(ele),  expect[i])
       });
@@ -104,13 +103,12 @@ suite('Unit Tests', function(){
     });
     
   });
-  console.log('yyyy : '+convertHandler.convert(5,'gal'))
  
   suite('Function convertHandler.convert(num, unit)', function() {
     
     test('Gal to L', function(done) {
       let input = [5, 'gal'];
-      let expected = 18.9271;
+      let expected = 18.92705;
       assert.approximately(convertHandler.convert(input[0],input[1]),expected,0.1); //0.1 tolerance
       done();
     });
